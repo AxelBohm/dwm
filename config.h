@@ -63,6 +63,8 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
 static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
+static const char *bklu[] = { "xbacklight", "-steps", "1", "-time", "0", "-inc", "5", NULL };
+static const char *bkld[] = { "xbacklight", "-steps", "1", "-time", "0", "-dec", "5", NULL };
 static const char *mailcmd[] = { "st", "-e", "neomutt", NULL };
 static const char *browsercmd[] = { "firefox", NULL };
 
@@ -105,9 +107,12 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
     /* audio */
-	{ 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
-	{ 0,                       XF86XK_AudioMute,        spawn, {.v = mutevol } },
-	{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
+	{ 0,                XF86XK_AudioLowerVolume,      spawn,   {.v = downvol } },
+	{ 0,                XF86XK_AudioMute,             spawn,   {.v = mutevol } },
+	{ 0,                XF86XK_AudioRaiseVolume,      spawn,   {.v = upvol   } },
+    /* screen brightness */
+    {0,                 XF86XK_MonBrightnessUp,       spawn,   {.v = bklu } },
+    {0,                 XF86XK_MonBrightnessDown,     spawn,   {.v = bkld } },
 };
 
 /* button definitions */
