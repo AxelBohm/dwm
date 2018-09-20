@@ -114,8 +114,8 @@ static Key keys[] = {
 	{ 0,                XF86XK_AudioMute,             spawn,   {.v = mutevol } },
 	{ 0,                XF86XK_AudioRaiseVolume,      spawn,   {.v = upvol   } },
     /* screen brightness */
-    {0,                 XF86XK_MonBrightnessUp,       spawn,   {.v = bklu } },
-    {0,                 XF86XK_MonBrightnessDown,     spawn,   {.v = bkld } },
+    { 0,                 XF86XK_MonBrightnessUp,       spawn,   {.v = bklu } },
+    { 0,                 XF86XK_MonBrightnessDown,     spawn,   {.v = bkld } },
 };
 
 /* button definitions */
