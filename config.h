@@ -67,6 +67,7 @@ static const char *bklu[] = { "xbacklight", "-steps", "1", "-time", "0", "-inc",
 static const char *bkld[] = { "xbacklight", "-steps", "1", "-time", "0", "-dec", "5", NULL };
 static const char *mailcmd[] = { "st", "-e", "neomutt", NULL };
 static const char *browsercmd[] = { "firefox", NULL };
+static const char *roficmd[] = {"rofi -combi-modi window,drun -show combi", NULL}
 
 
 static Key keys[] = {
@@ -75,6 +76,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_m,      spawn,          {.v = mailcmd } },
 	{ MODKEY,                       XK_b,      spawn,          {.v = browsercmd } },
+	{ ALTKEY,                       XK_space,  spawn,          {.v = roficmd } },
 	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
