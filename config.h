@@ -67,7 +67,7 @@ static const char *bklu[] = { "xbacklight", "-inc", "5", NULL };
 static const char *bkld[] = { "xbacklight", "-dec", "5", NULL };
 static const char *mailcmd[] = { "st", "-e", "neomutt", NULL };
 static const char *browsercmd[] = { "firefox", NULL };
-static const char *roficmd[] = {"rofi -combi-modi window,drun -show combi", NULL}
+static const char *roficmd[] = {"rofi -combi-modi window,drun -show combi", NULL};
 
 
 static Key keys[] = {
