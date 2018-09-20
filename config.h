@@ -60,9 +60,9 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
-static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
-static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
+static const char *volup[]     = {"amixer", "sset", "Master", "5%+",      NULL};
+static const char *voldown[] = {"amixer", "sset", "Master", "5%-", NULL};
+static const char *volmute[]   = {"amixer", "sset", "Master", "toggle",   NULL};
 static const char *bklu[] = { "xbacklight", "-inc", "5", NULL };
 static const char *bkld[] = { "xbacklight", "-dec", "5", NULL };
 static const char *mailcmd[] = { "st", "-e", "neomutt", NULL };
@@ -110,9 +110,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
     /* audio */
-	{ 0,                XF86XK_AudioLowerVolume,      spawn,   {.v = downvol } },
-	{ 0,                XF86XK_AudioMute,             spawn,   {.v = mutevol } },
-	{ 0,                XF86XK_AudioRaiseVolume,      spawn,   {.v = upvol   } },
+	{ 0,                XF86XK_AudioLowerVolume,      spawn,   {.v = voldown } },
+	{ 0,                XF86XK_AudioMute,             spawn,   {.v = volmute } },
+	{ 0,                XF86XK_AudioRaiseVolume,      spawn,   {.v = volup   } },
     /* screen brightness */
     { 0,                 XF86XK_MonBrightnessUp,       spawn,   {.v = bklu } },
     { 0,                 XF86XK_MonBrightnessDown,     spawn,   {.v = bkld } },
