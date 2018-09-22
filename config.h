@@ -27,11 +27,11 @@ static const char gb_bg4[]          = "#7c6f64";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeSel]  = { gb_fg,     gb_bg4,    gb_bg4 },
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -39,11 +39,12 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "mutt",     NULL,       NULL,       1 << 0,       0,           -1 },
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
@@ -88,7 +89,7 @@ static const char *mpctoggle[]  = { "mpc", "toggle",                            
 static const char *lockcmd[]    = { "slock",                                    NULL };
 static const char *mailcmd[]    = { "st", "-e", "neomutt",                      NULL };
 static const char *browsercmd[] = { "firefox",                                  NULL };
-static const char *roficmd[]    = { "rofi", "-combi-modi", "window,drun", "-show combi", NULL};
+static const char *roficmd[]    = { "rofi", "-combi-modi", "window,drun", "-show", "combi", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -97,7 +98,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,      spawn,          {.v = mailcmd } },
 	{ MODKEY,                       XK_b,      spawn,          {.v = browsercmd } },
 	{ ALTKEY,                       XK_space,  spawn,          {.v = roficmd } },
-	{ MODKEY,                       XK_Delete, spawn,          {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screensetup } },
     /* base */
 	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
