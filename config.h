@@ -90,6 +90,10 @@ static const char *lockcmd[]    = { "slock",                                    
 static const char *mailcmd[]    = { "st", "-e", "neomutt",                      NULL };
 static const char *browsercmd[] = { "firefox",                                  NULL };
 static const char *roficmd[]    = { "rofi", "-combi-modi", "window,drun", "-show", "combi", NULL};
+static const char *calcmd[]     = { "st", "-e", "calcurse",                     NULL };
+static const char *rsscmd[]     = { "st", "-e", "newsboat",                     NULL };
+static const char *chatcmd[]    = { "rambox",                                   NULL };
+static const char *musiccmd[]   = { "st", "-e", "ncmpcpp",                      NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -98,6 +102,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,      spawn,          {.v = mailcmd } },
 	{ MODKEY,                       XK_b,      spawn,          {.v = browsercmd } },
 	{ ALTKEY,                       XK_space,  spawn,          {.v = roficmd } },
+	{ MODKEY,                       XK_z,      spawn,          {.v = calcmd } },
+	{ MODKEY,                       XK_n,      spawn,          {.v = rsscmd } },
+	{ MODKEY,                       XK_c,      spawn,          {.v = chatcmd } },
+	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = musiccmd } },
+    /* sys */
     { MODKEY,                       XK_Delete, spawn,          {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screensetup } },
     /* base */
