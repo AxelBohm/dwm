@@ -98,6 +98,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,      spawn,          {.v = mailcmd } },
 	{ MODKEY,                       XK_b,      spawn,          {.v = browsercmd } },
 	{ ALTKEY,                       XK_space,  spawn,          {.v = roficmd } },
+    { MODKEY,                       XK_Delete, spawn,          {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screensetup } },
     /* base */
 	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
