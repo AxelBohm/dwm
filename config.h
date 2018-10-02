@@ -95,6 +95,7 @@ static const char *calcmd[]     = { "st", "-e", "calcurse",                     
 static const char *rsscmd[]     = { "st", "-e", "newsboat",                     NULL };
 static const char *chatcmd[]    = { "rambox",                                   NULL };
 static const char *musiccmd[]   = { "st", "-e", "ncmpcpp",                      NULL };
+static const char *rangercmd[]  = { "st", "-e", "ranger",                       NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -107,6 +108,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_n,      spawn,          {.v = rsscmd } },
 	{ MODKEY,                       XK_c,      spawn,          {.v = chatcmd } },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = musiccmd } },
+	{ MODKEY,                       XK_r,      spawn,          {.v = rangercmd } },
     /* sys */
     { MODKEY,                       XK_Delete, spawn,          {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screensetup } },
