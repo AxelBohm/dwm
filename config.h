@@ -41,6 +41,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
 	{ "mutt",     NULL,       NULL,       1 << 0,       0,           -1 },
+	{ "rambox",   NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
