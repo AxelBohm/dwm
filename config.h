@@ -41,6 +41,9 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
 	{ "mutt",     NULL,       NULL,       1 << 0,       0,           -1 },
+	{ "cal",      NULL,       NULL,       1 << 0,       0,           -1 },
+	{ "rss",      NULL,       NULL,       1 << 0,       0,           -1 },
+	{ "org",      NULL,       NULL,       1 << 0,       0,           -1 },
 	{ "Rambox",   NULL,       NULL,       1 << 6,       0,           -1 },
 };
 
@@ -88,11 +91,12 @@ static const char *mpcprev[]    = { "mpc", "prev",                              
 static const char *mpctoggle[]  = { "mpc", "toggle",                            NULL };
 /* misc */
 static const char *lockcmd[]    = { "slock",                                    NULL };
-static const char *mailcmd[]    = { "st", "-e", "neomutt",                      NULL };
+static const char *mailcmd[]    = { "st", "-c", "mutt", "-e", "neomutt",        NULL };
 static const char *browsercmd[] = { "firefox",                                  NULL };
 static const char *roficmd[]    = { "rofi", "-combi-modi", "window,drun", "-show", "combi", NULL};
-static const char *calcmd[]     = { "st", "-e", "calcurse",                     NULL };
-static const char *rsscmd[]     = { "st", "-e", "newsboat",                     NULL };
+static const char *calcmd[]     = { "st", "-c", "calender", "-e", "calcurse",   NULL };
+static const char *rsscmd[]     = { "st", "-c", "rss", "-e", "newsboat",        NULL };
+static const char *orgcmd[]     = { "st", "-c", "org", "-e", "vim", "org/life.org",    NULL };
 static const char *chatcmd[]    = { "rambox",                                   NULL };
 static const char *musiccmd[]   = { "st", "-e", "ncmpcpp",                      NULL };
 static const char *rangercmd[]  = { "st", "-e", "ranger",                       NULL };
@@ -106,6 +110,7 @@ static Key keys[] = {
 	{ ALTKEY,                       XK_space,  spawn,          {.v = roficmd } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = calcmd } },
 	{ MODKEY,                       XK_n,      spawn,          {.v = rsscmd } },
+	{ MODKEY,                       XK_o,      spawn,          {.v = orgcmd } },
 	{ MODKEY,                       XK_c,      spawn,          {.v = chatcmd } },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = musiccmd } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = rangercmd } },
