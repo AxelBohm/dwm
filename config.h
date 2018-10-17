@@ -91,13 +91,13 @@ static const char *mpcprev[]    = { "mpc", "prev",                              
 static const char *mpctoggle[]  = { "mpc", "toggle",                            NULL };
 /* misc */
 static const char *lockcmd[]    = { "slock",                                    NULL };
-static const char *mailcmd[]    = { "st", "-c", "mutt", "-e", "neomutt",        NULL };
-static const char *browsercmd[] = { "firefox",                                  NULL };
-static const char *roficmd[]    = { "rofi", "-combi-modi", "window,drun", "-show", "combi", NULL};
-static const char *calcmd[]     = { "st", "-c", "calender", "-e", "calcurse",   NULL };
-static const char *rsscmd[]     = { "st", "-c", "rss", "-e", "newsboat",        NULL };
-static const char *orgcmd[]     = { "st", "-c", "org", "-e", "vim", "org/life.org",    NULL };
-static const char *chatcmd[]    = { "rambox",                                   NULL };
+static const char *mailcmd[]    = { "st", "-c", "mutt", "-e", "neomutt", NULL, "mutt" };
+static const char *browsercmd[] = { "firefox", NULL, NULL, NULL, NULL, NULL, "Firefox" };
+static const char *roficmd[]    = { "rofi", "-combi-modi", "window,drun", "-show", "combi", NULL };
+static const char *calcmd[]     = { "st", "-c", "calender", "-e", "calcurse", NULL, "calender" };
+static const char *rsscmd[]     = { "st", "-c", "rss", "-e", "newsboat", NULL, "rss" };
+static const char *orgcmd[]     = { "st", "-c", "org", "-e", "vim", "org/life.org", "org" };
+static const char *chatcmd[]    = { "rambox", NULL, NULL, NULL, NULL, NULL, "Rambox"};
 static const char *musiccmd[]   = { "st", "-e", "ncmpcpp",                      NULL };
 static const char *rangercmd[]  = { "st", "-e", "ranger",                       NULL };
 
@@ -105,13 +105,13 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_m,      spawn,          {.v = mailcmd } },
-	{ MODKEY,                       XK_b,      spawn,          {.v = browsercmd } },
+	{ MODKEY,                       XK_m,      runorraise,     {.v = mailcmd } },
+	{ MODKEY,                       XK_b,      runorraise,     {.v = browsercmd } },
 	{ ALTKEY,                       XK_space,  spawn,          {.v = roficmd } },
-	{ MODKEY,                       XK_z,      spawn,          {.v = calcmd } },
-	{ MODKEY,                       XK_n,      spawn,          {.v = rsscmd } },
-	{ MODKEY,                       XK_o,      spawn,          {.v = orgcmd } },
-	{ MODKEY,                       XK_c,      spawn,          {.v = chatcmd } },
+	{ MODKEY,                       XK_z,      runorraise,     {.v = calcmd } },
+	{ MODKEY,                       XK_n,      runorraise,     {.v = rsscmd } },
+	{ MODKEY,                       XK_o,      runorraise,     {.v = orgcmd } },
+	{ MODKEY,                       XK_c,      runorraise,     {.v = chatcmd } },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = musiccmd } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = rangercmd } },
     /* sys */
