@@ -1,0 +1,57 @@
+From 7f929eab450b7ca12e55d2168f6a67cf4e5c3b2e Mon Sep 17 00:00:00 2001
+From: AxelBohm <axel.boehm@ymail.com>
+Date: Wed, 17 Oct 2018 17:04:09 +0200
+Subject: [PATCH] runorraise patch with multi monitor support
+
+---
+ dwm.c | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+
+diff --git a/dwm.c b/dwm.c
+index d37ec37..a2154e0 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -195,6 +195,7 @@ static void resizeclient(Client *c, int x, int y, int w, int h);
+ static void resizemouse(const Arg *arg);
+ static void restack(Monitor *m);
+ static void run(void);
++static void runorraise(const Arg *arg);
+ static void scan(void);
+ static int sendevent(Client *c, Atom proto);
+ static void sendmon(Client *c, Monitor *m);
+@@ -1406,6 +1407,32 @@ run(void)
+ 			handler[ev.type](&ev); /* call handler */
+ }
+ 
++void
++runorraise(const Arg *arg) {
++    char *app = ((char **)arg->v)[6];
++    Arg a = { .ui = ~0 };
++    Monitor *mon;
++    Client *c;
++    XClassHint hint = { NULL, NULL };
++    /* Tries to find the client */
++    for (mon = mons; mon; mon = mon->next) {
++        for (c = mon->clients; c; c = c->next) {
++            XGetClassHint(dpy, c->win, &hint);
++            if (hint.res_class && strcmp(app, hint.res_class) == 0) {
++                a.ui = c->tags;
++                unfocus(selmon->sel, 0);
++                selmon = mon;
++                view(&a);
++                focus(c);
++                XRaiseWindow(dpy, c->win);
++                return;
++            }
++        }
++    }
++    /* Client not found: spawn it */
++    spawn(arg);
++}
++
+ void
+ scan(void)
+ {
+-- 
+2.19.0
+
