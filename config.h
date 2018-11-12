@@ -116,6 +116,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_c,      runorraise,     {.v = chatcmd } },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = musiccmd } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = rangercmd } },
+	{ ALTKEY|ShiftMask,             XK_space,  spawn,          {.v = rangercmd } },
     /* sys */
     { MODKEY,                       XK_Delete, spawn,          {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screensetup } },
