@@ -28,8 +28,8 @@ static const char gb_bg4[]          = "#7c6f64";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, term_bg },
-	[SchemeSel]  = { bg_orange, col_gray1,    gb_bg4 },
+	[SchemeNorm] = { col_gray3, term_bg,   term_bg },
+	[SchemeSel]  = { bg_orange, term_bg,   gb_bg4 },
 };
 
 /* tagging */
