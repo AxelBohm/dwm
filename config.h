@@ -78,8 +78,10 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]    = { "st",                                       NULL };
 /* screen */
-static const char *screensetup[]= { "monitor.sh",                               NULL };
-static const char *screenext[]  = { "set-external.sh",                          NULL };
+static const char *screensetup[]    = { "monitor.sh",                           NULL };
+static const char *screenext[]      = { "set-external.sh",                      NULL };
+static const char *screendualext[]  = { "set-dual-external.sh",                 NULL };
+static const char *screenint[]      = { "set-internal.sh",                      NULL };
 /* sound */
 static const char *volup[]      = { "amixer", "sset", "Master", "5%+",          NULL };
 static const char *voldown[]    = { "amixer", "sset", "Master", "5%-",          NULL };
@@ -120,6 +122,8 @@ static Key keys[] = {
     /* sys */
     { MODKEY,                       XK_Delete, spawn,          {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screensetup } },
+    { ALTKEY,                       XK_d,      spawn,          {.v = screendualext } },
+    { ALTKEY,                       XK_i,      spawn,          {.v = screenint } },
     /* base */
 	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
