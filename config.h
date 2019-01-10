@@ -17,19 +17,19 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
-static const char bg_orange[]       = "#fe8019";
-static const char gb_orange_dark[]  = "#d65d0e";
+static const char orange_dark[]     = "#d65d0e";
+static const char orange_light[]    = "#fe8019";
 static const char gb_fg[]           = "#ebdbb2";
 static const char gb_blue[]         = "#83a598";
 static const char gb_grey[]         = "#928374";
 static const char gb_bg4[]          = "#7c6f64";
-
+static const char green_dark[]      = "#98971a";
 
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, term_bg,   term_bg },
-	[SchemeSel]  = { bg_orange, term_bg,   gb_bg4 },
+	[SchemeSel]  = { green_dark, term_bg,   gb_bg4 },
 };
 
 /* tagging */
