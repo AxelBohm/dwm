@@ -110,6 +110,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_semicolon, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_m,      runorraise,     {.v = mailcmd } },
 	{ MODKEY,                       XK_b,      runorraise,     {.v = browsercmd } },
 	{ ALTKEY,                       XK_space,  spawn,          {.v = rangercmd } },
