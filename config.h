@@ -3,7 +3,7 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 8;       /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
@@ -11,7 +11,7 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "xos4 Terminus:pixelsize=15" };
 static const char dmenufont[]       = "xos4 Terminus:pixelsize=15";
 static const char col_gray1[]       = "#222222";
-static const char term_bg[]         = "#262626";
+static const char bg[]              = "#282828";
 static const char black[]           = "#000000";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -24,12 +24,13 @@ static const char gb_blue[]         = "#83a598";
 static const char gb_grey[]         = "#928374";
 static const char gb_bg4[]          = "#7c6f64";
 static const char green_dark[]      = "#98971a";
+static const char fg[]              = "#ebdbb2";
 
 
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, term_bg,   term_bg },
-	[SchemeSel]  = { green_dark, term_bg,   gb_bg4 },
+	/*               fg          bg         border   */
+	[SchemeNorm] = { fg,         bg,        bg },
+	[SchemeSel]  = { green_dark, bg,        gb_bg4 },
 };
 
 /* tagging */
@@ -75,7 +76,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon,                NULL };
 static const char *termcmd[]    = { "st",                                       NULL };
 /* screen */
 static const char *screensetup[]    = { "monitor.sh",                           NULL };
