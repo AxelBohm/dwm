@@ -123,6 +123,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = passmenucmd } },
     /* sys */
     { MODKEY,                       XK_Delete, spawn,          {.v = lockcmd } },
+    { MODKEY,                       XK_x,      spawn,          {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screensetup } },
     { ALTKEY,                       XK_d,      spawn,          {.v = screendualext } },
     { ALTKEY,                       XK_i,      spawn,          {.v = screenint } },
@@ -136,7 +137,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_a,      setlayout,      {.v = &layouts[1]} },
