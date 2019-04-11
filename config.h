@@ -104,7 +104,8 @@ static const char *orgcmd[]     = { "st", "-c", "org", "-e", "vim", "org/life.or
 static const char *chatcmd[]    = { "rambox", NULL, NULL, NULL, NULL, NULL, "Rambox"};
 static const char *musiccmd[]   = { "st", "-e", "ncmpcpp",                      NULL };
 static const char *rangercmd[]  = { "st", "-e", "ranger",                       NULL };
-static const char *passmenucmd[]  = { "dmenu_pass",                               NULL };
+static const char *passcmd[]    = { "dmenu_pass", "-p",                         NULL };
+static const char *usercmd[]    = { "dmenu_pass", "-u",                         NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -120,7 +121,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_o,      runorraise,     {.v = orgcmd } },
 	{ MODKEY,                       XK_c,      runorraise,     {.v = chatcmd } },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = musiccmd } },
-	{ MODKEY,                       XK_p,      spawn,          {.v = passmenucmd } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = passcmd } },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = usercmd } },
+	{ MODKEY,                       XK_s,      view,           {0} },
     /* sys */
     { MODKEY,                       XK_Delete, spawn,          {.v = lockcmd } },
     { MODKEY,                       XK_x,      spawn,          {.v = lockcmd } },
