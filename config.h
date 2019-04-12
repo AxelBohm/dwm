@@ -8,8 +8,8 @@ static const unsigned int gappx     = 8;       /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "xos4 Terminus:pixelsize=15" };
-static const char dmenufont[]       = "xos4 Terminus:pixelsize=15";
+static const char *fonts[]          = { "Terminus:pixelsize=15" };
+static const char dmenufont[]       = "Terminus:pixelsize=15";
 static const char col_gray1[]       = "#222222";
 static const char bg[]              = "#282828";
 static const char black[]           = "#000000";
@@ -110,7 +110,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_semicolon, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_semicolon, spawn,       {.v = termcmd } },
 	{ MODKEY,                       XK_m,      runorraise,     {.v = mailcmd } },
 	{ MODKEY,                       XK_b,      runorraise,     {.v = browsercmd } },
 	{ ALTKEY,                       XK_space,  spawn,          {.v = rangercmd } },
