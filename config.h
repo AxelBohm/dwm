@@ -4,33 +4,27 @@
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int gappx     = 8;       /* gap pixel between windows */
+static const unsigned int gappx     = 4;       /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "xos4 Terminus:pixelsize=15" };
-static const char dmenufont[]       = "xos4 Terminus:pixelsize=15";
-static const char col_gray1[]       = "#222222";
-static const char bg[]              = "#282828";
-static const char black[]           = "#000000";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+static const char *fonts[]          = { "xos4 Terminus:pixelsize=12" };
+static const char dmenufont[]       = "xos4 Terminus:pixelsize=12";
+
+/* colors */
+static const char col_bg[]          = "#282828";
+static const char col_green[]       = "#98971a";
+static const char col_grey[]        = "#928374";
+static const char bright_blue[]     = "#83a598";
+static const char col_fg[]          = "#ebdbb2";
 static const char orange_dark[]     = "#d65d0e";
 static const char orange_light[]    = "#fe8019";
-static const char gb_fg[]           = "#ebdbb2";
-static const char gb_blue[]         = "#83a598";
-static const char gb_grey[]         = "#928374";
-static const char gb_bg4[]          = "#7c6f64";
-static const char green_dark[]      = "#98971a";
-static const char fg[]              = "#ebdbb2";
 
 
 static const char *colors[][3]      = {
 	/*               fg          bg         border   */
-	[SchemeNorm] = { fg,         bg,        bg },
-	[SchemeSel]  = { green_dark, bg,        gb_bg4 },
+	[SchemeNorm] = { col_fg,     col_bg,    col_bg },
+	[SchemeSel]  = { col_green,  col_bg,    col_grey },
 };
 
 /* tagging */
