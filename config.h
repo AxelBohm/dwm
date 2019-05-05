@@ -4,37 +4,29 @@
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int gappx     = 8;       /* gap pixel between windows */
+static const unsigned int gappx     = 4;       /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Terminus:pixelsize=15" };
-static const char dmenufont[]       = "Terminus:pixelsize=15";
-static const char col_gray1[]       = "#222222";
-static const char bg[]              = "#282828";
-static const char black[]           = "#000000";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
-static const char orange_dark[]     = "#d65d0e";
-static const char orange_light[]    = "#fe8019";
-static const char gb_fg[]           = "#ebdbb2";
-static const char gb_blue[]         = "#83a598";
-static const char gb_grey[]         = "#928374";
-static const char gb_bg4[]          = "#7c6f64";
-static const char green_dark[]      = "#98971a";
-static const char fg[]              = "#ebdbb2";
+static const char *fonts[]          = { "Terminus:pixelsize=12" };
+static const char dmenufont[]       = "Terminus:pixelsize=12";
+
+/* colors */
+static const char col_bg[]          = "#282828";
+static const char col_green[]       = "#98971a";
+static const char col_grey[]        = "#928374";
+static const char bright_blue[]     = "#83a598";
+static const char col_fg[]          = "#ebdbb2";
 
 
 static const char *colors[][3]      = {
 	/*               fg          bg         border   */
-	[SchemeNorm] = { fg,         bg,        bg },
-	[SchemeSel]  = { green_dark, bg,        gb_bg4 },
+	[SchemeNorm] = { col_fg,     col_bg,    col_bg },
+	[SchemeSel]  = { col_green,  col_bg,    col_grey },
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "7", "8", "9" };
+static const char *tags[] = { "", "", "", "4", "7", "8", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -96,15 +88,16 @@ static const char *mpcprev[]    = { "mpc", "prev",                              
 static const char *mpctoggle[]  = { "mpc", "toggle",                            NULL };
 /* misc */
 static const char *lockcmd[]    = { "slock",                                    NULL };
-static const char *mailcmd[]    = { "st", "-c", "mutt", "-e", "neomutt", NULL, "mutt" };
-static const char *browsercmd[] = { "firefox", NULL, NULL, NULL, NULL, NULL, "Firefox" };
-static const char *calcmd[]     = { "st", "-c", "calender", "-e", "calcurse", NULL, "calender" };
-static const char *rsscmd[]     = { "st", "-c", "rss", "-e", "newsboat", NULL, "rss" };
-static const char *orgcmd[]     = { "st", "-c", "org", "-e", "vim", "org/life.org", "org" };
-static const char *chatcmd[]    = { "rambox", NULL, NULL, NULL, NULL, NULL, "Rambox"};
+static const char *mailcmd[]    = { "st", "-c", "mutt", "-e", "neomutt", NULL,   "mutt" };
+static const char *browsercmd[] = { "firefox", NULL, NULL, NULL, NULL, NULL,     "Firefox" };
+static const char *calcmd[]     = { "st", "-c", "cal", "-e", "calcurse", NULL,   "cal" };
+static const char *rsscmd[]     = { "st", "-c", "rss", "-e", "newsboat", NULL,   "rss" };
+static const char *orgcmd[]     = { "st", "-c", "org", "-e", "orgmode.sh", NULL, "org" };
+static const char *chatcmd[]    = { "rambox", NULL, NULL, NULL, NULL, NULL,      "Rambox"};
 static const char *musiccmd[]   = { "st", "-e", "ncmpcpp",                      NULL };
 static const char *rangercmd[]  = { "st", "-e", "ranger",                       NULL };
-static const char *passmenucmd[]  = { "dmenu_pass",                               NULL };
+static const char *passcmd[]    = { "dmenu_pass", "-p",                         NULL };
+static const char *usercmd[]    = { "dmenu_pass", "-u",                         NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -120,7 +113,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_o,      runorraise,     {.v = orgcmd } },
 	{ MODKEY,                       XK_c,      runorraise,     {.v = chatcmd } },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = musiccmd } },
-	{ MODKEY,                       XK_p,      spawn,          {.v = passmenucmd } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = passcmd } },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = usercmd } },
+	{ MODKEY,                       XK_s,      view,           {0} },
     /* sys */
     { MODKEY,                       XK_Delete, spawn,          {.v = lockcmd } },
     { MODKEY,                       XK_x,      spawn,          {.v = lockcmd } },
