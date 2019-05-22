@@ -94,7 +94,7 @@ static const char *mpcprev[]    = { "mpc", "prev",                              
 static const char *mpctoggle[]  = { "mpc", "toggle",                            NULL };
 /* misc */
 static const char *lockcmd[]    = { "slock",                                    NULL };
-static const char *mailcmd[]    = { "st", "-c", "mutt", "-e", "neomutt", NULL,   "mutt" };
+static const char *mailcmd[]    = { "st", "-c", "mutt", "-e", "mutt.sh", NULL,   "mutt" };
 static const char *browsercmd[] = { "firefox", NULL, NULL, NULL, NULL, NULL,     "Firefox" };
 static const char *calcmd[]     = { "st", "-c", "cal", "-e", "calcurse", NULL,   "cal" };
 static const char *rsscmd[]     = { "st", "-c", "rss", "-e", "newsboat", NULL,   "rss" };
