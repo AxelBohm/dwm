@@ -17,14 +17,18 @@ static const char col_green[]       = "#98971a";
 static const char col_grey[]        = "#928374";
 static const char bright_blue[]     = "#83a598";
 static const char col_fg[]          = "#ebdbb2";
-static const char orange_dark[]     = "#d65d0e";
-static const char orange_light[]    = "#fe8019";
 
+
+static const char nord_bg[]          = "#2e3440";
+static const char nord_green[]       = "#a3be8c";
+static const char nord_fg[]          = "#d8dee9";
+static const char nord_grey[]        = "#4c566a";
+static const char nord_blue[]        = "#81a1c1";
 
 static const char *colors[][3]      = {
-	/*               fg          bg         border   */
-	[SchemeNorm] = { col_fg,     col_bg,    col_bg },
-	[SchemeSel]  = { col_green,  col_bg,    col_grey },
+	/*               fg           bg         border   */
+	[SchemeNorm] = { nord_fg,     nord_bg,   nord_bg   },
+	[SchemeSel]  = { nord_green,  nord_bg,   nord_grey },
 };
 
 /* tagging */
