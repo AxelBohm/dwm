@@ -115,7 +115,7 @@ static Key keys[] = {
 	{ ALTKEY,                       XK_space,  spawn,          {.v = rangercmd } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = rangercmd } },
 	{ MODKEY,                       XK_z,      runorraise,     {.v = calcmd } },
-	{ MODKEY,                       XK_n,      runorraise,     {.v = rsscmd } },
+	{ MODKEY|ShiftMask,             XK_n,      runorraise,     {.v = rsscmd } },
 	{ MODKEY,                       XK_o,      runorraise,     {.v = orgcmd } },
 	{ MODKEY,                       XK_c,      runorraise,     {.v = chatcmd } },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = musiccmd } },
@@ -128,14 +128,21 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screensetup } },
     { ALTKEY,                       XK_d,      spawn,          {.v = screendualext } },
     { ALTKEY,                       XK_i,      spawn,          {.v = screenint } },
-    /* base */
-	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
+    /* qwerty */
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_i,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	/* { MODKEY,                       XK_i,      incnmaster,     {.i = +1 } }, */
+	/* { MODKEY|ShiftMask,             XK_i,      incnmaster,     {.i = -1 } }, */
+    /* colemak */
+	{ MODKEY,                       XK_n,      focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_e,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_i,      setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_u,      incnmaster,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_u,      incnmaster,     {.i = -1 } },
+    /* base */
+	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
+	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
