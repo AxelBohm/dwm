@@ -28,7 +28,7 @@ static const char nord_blue[]        = "#81a1c1";
 static const char *colors[][3]      = {
 	/*               fg           bg         border   */
 	[SchemeNorm] = { nord_fg,     nord_bg,   nord_bg   },
-	[SchemeSel]  = { nord_green,  nord_bg,   nord_grey },
+	[SchemeSel]  = { nord_green,  nord_bg,   nord_fg },
 };
 
 /* tagging */
