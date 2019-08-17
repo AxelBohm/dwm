@@ -104,6 +104,8 @@ static const char *musiccmd[]   = { "st", "-e", "ncmpcpp",                      
 static const char *rangercmd[]  = { "st", "-e", "ranger",                       NULL };
 static const char *passcmd[]    = { "dmenu_pass", "-p",                         NULL };
 static const char *usercmd[]    = { "dmenu_pass", "-u",                         NULL };
+static const char *emacscmd[]   = { "emacs",                                    NULL };
+static const char *screenshot[] = { "spectacle",                                NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -121,17 +123,19 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = musiccmd } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = passcmd } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = usercmd } },
+	{ MODKEY|ShiftMask,             XK_e,      spawn,          {.v = emacscmd } },
+	{ MODKEY|ControlMask,           XK_s,      spawn,          {.v = screenshot } },
 	{ MODKEY,                       XK_s,      view,           {0} },
     /* sys */
     { MODKEY,                       XK_Delete, spawn,          {.v = lockcmd } },
     { MODKEY,                       XK_x,      spawn,          {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screensetup } },
-    { ALTKEY,                       XK_d,      spawn,          {.v = screendualext } },
-    { ALTKEY,                       XK_i,      spawn,          {.v = screenint } },
+    { MODKEY|ShiftMask,             XK_d,      spawn,          {.v = screendualext } },
+    { MODKEY|ShiftMask,             XK_i,      spawn,          {.v = screenint } },
     /* qwerty */
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	/* { MODKEY,                       XK_j,      focusstack,     {.i = +1 } }, */
+	/* { MODKEY,                       XK_k,      focusstack,     {.i = -1 } }, */
+	/* { MODKEY,                       XK_l,      setmfact,       {.f = +0.05} }, */
 	/* { MODKEY,                       XK_i,      incnmaster,     {.i = +1 } }, */
 	/* { MODKEY|ShiftMask,             XK_i,      incnmaster,     {.i = -1 } }, */
     /* colemak */
