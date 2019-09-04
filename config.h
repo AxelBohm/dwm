@@ -94,18 +94,18 @@ static const char *mpcprev[]    = { "mpc", "prev",                              
 static const char *mpctoggle[]  = { "mpc", "toggle",                            NULL };
 /* misc */
 static const char *lockcmd[]    = { "slock",                                    NULL };
-static const char *mailcmd[]    = { "st", "-c", "mutt", "-e", "mutt.sh", NULL,   "mutt" };
-static const char *browsercmd[] = { "firefox", NULL, NULL, NULL, NULL, NULL,     "Firefox" };
-static const char *calcmd[]     = { "st", "-c", "cal", "-e", "calcurse", NULL,   "cal" };
-static const char *rsscmd[]     = { "st", "-c", "rss", "-e", "newsboat", NULL,   "rss" };
-static const char *orgcmd[]     = { "st", "-c", "org", "-e", "orgmode.sh", NULL, "org" };
-static const char *chatcmd[]    = { "rambox", NULL, NULL, NULL, NULL, NULL,      "Rambox"};
+static const char *mailcmd[]    = { "st", "-c", "mutt", "-e", "mutt.sh", NULL, "mutt" };
+static const char *browsercmd[] = { "firefox", NULL, NULL, NULL, NULL, NULL,   "Firefox" };
+static const char *calcmd[]     = { "st", "-c", "cal", "-e", "calcurse", NULL, "cal" };
+static const char *rsscmd[]     = { "st", "-c", "rss", "-e", "newsboat", NULL, "rss" };
+static const char *orgcmd[]     = { "st", "-c", "org", "-e", "org.sh", NULL,   "org" };
+static const char *chatcmd[]    = { "rambox", NULL, NULL, NULL, NULL, NULL,    "Rambox"};
 static const char *musiccmd[]   = { "st", "-e", "ncmpcpp",                      NULL };
 static const char *rangercmd[]  = { "st", "-e", "ranger",                       NULL };
 static const char *passcmd[]    = { "dmenu_pass", "-p",                         NULL };
 static const char *usercmd[]    = { "dmenu_pass", "-u",                         NULL };
-static const char *emacscmd[]   = { "emacs",                                    NULL };
-static const char *screenshot[] = { "spectacle",                                NULL };
+static const char *emacscmd[]   = { "emacs",  NULL, NULL, NULL, NULL, NULL,    "emacs"};
+static const char *screenshot[] = { "scrot", "-s",                              NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
