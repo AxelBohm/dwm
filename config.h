@@ -104,7 +104,7 @@ static const char *musiccmd[]   = { "st", "-e", "ncmpcpp",                      
 static const char *rangercmd[]  = { "st", "-e", "ranger",                       NULL };
 static const char *passcmd[]    = { "dmenu_pass", "-p",                         NULL };
 static const char *usercmd[]    = { "dmenu_pass", "-u",                         NULL };
-static const char *emacscmd[]   = { "emacs",  NULL, NULL, NULL, NULL, NULL,    "emacs"};
+static const char *emacscmd[]   = { "emacs",  NULL, NULL, NULL, NULL, NULL,    "Emacs"};
 static const char *screenshot[] = { "scrot", "-s",                              NULL };
 
 static Key keys[] = {
@@ -123,7 +123,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = musiccmd } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = passcmd } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = usercmd } },
-	{ MODKEY|ShiftMask,             XK_e,      spawn,          {.v = emacscmd } },
+	{ MODKEY|ShiftMask,             XK_e,      runorraise,     {.v = emacscmd } },
+	{ MODKEY|ControlMask,           XK_e,      runorraise,     {.v = emacscmd } },
 	{ MODKEY|ControlMask,           XK_s,      spawn,          {.v = screenshot } },
 	{ MODKEY,                       XK_s,      view,           {0} },
     /* sys */
