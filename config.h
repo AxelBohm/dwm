@@ -100,7 +100,7 @@ static const char *mailcmd[]    = { "st", "-c", "mutt", "-e", "mutt.sh", NULL, "
 static const char *browsercmd[] = { "firefox", NULL, NULL, NULL, NULL, NULL,   "Firefox" };
 static const char *calcmd[]     = { "st", "-c", "cal", "-e", "calcurse", NULL, "cal" };
 static const char *rsscmd[]     = { "st", "-c", "rss", "-e", "newsboat", NULL, "rss" };
-static const char *orgcmd[]     = { "st", "-c", "org", "-e", "org.sh", NULL,   "org" };
+static const char *orgcmd[]     = { "org.sh",                                   NULL,   };
 static const char *chatcmd[]    = { "rambox", NULL, NULL, NULL, NULL, NULL,    "Rambox"};
 static const char *musiccmd[]   = { "st", "-e", "ncmpcpp",                      NULL };
 static const char *rangercmd[]  = { "st", "-e", "ranger",                       NULL };
@@ -113,14 +113,14 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_semicolon, spawn,          {.v = termcmd } },
+	{ MODKEY|ControlMask,           XK_n,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_m,      runorraise,     {.v = mailcmd } },
 	{ MODKEY,                       XK_b,      runorraise,     {.v = browsercmd } },
 	{ ALTKEY,                       XK_space,  spawn,          {.v = rangercmd } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = rangercmd } },
 	{ MODKEY,                       XK_z,      runorraise,     {.v = calcmd } },
 	{ MODKEY|ShiftMask,             XK_n,      runorraise,     {.v = rsscmd } },
-	{ MODKEY,                       XK_o,      runorraise,     {.v = orgcmd } },
+	{ MODKEY,                       XK_o,      spawn,          {.v = orgcmd } },
 	{ MODKEY,                       XK_c,      runorraise,     {.v = chatcmd } },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = musiccmd } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = passcmd } },
@@ -169,9 +169,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_7,                      4)
-	TAGKEYS(                        XK_8,                      5)
-	TAGKEYS(                        XK_9,                      6)
+	TAGKEYS(                        XK_5,                      4)
+	TAGKEYS(                        XK_7,                      5)
+	TAGKEYS(                        XK_8,                      6)
+	TAGKEYS(                        XK_9,                      7)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
     /* audio */
 	{ 0,                XF86XK_AudioLowerVolume,      spawn,   {.v = voldown } },
