@@ -40,7 +40,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Firefox",  NULL,       NULL,       1 << 1,       0,           0 },
+	{ "firefox",  NULL,       NULL,       1 << 1,       0,           0 },
 	{ "mutt",     NULL,       NULL,       1 << 0,       0,           0 },
 	{ "calender", NULL,       NULL,       1 << 0,       0,           0 },
 	{ "rss",      NULL,       NULL,       1 << 0,       0,           0 },
@@ -97,7 +97,7 @@ static const char *mpctoggle[]  = { "mpc", "toggle",                            
 /* misc */
 static const char *lockcmd[]    = { "slock",                                    NULL };
 static const char *mailcmd[]    = { "st", "-c", "mutt", "-e", "mutt.sh", NULL, "mutt" };
-static const char *browsercmd[] = { "firefox", NULL, NULL, NULL, NULL, NULL,   "Firefox" };
+static const char *browsercmd[] = { "firefox", NULL, NULL, NULL, NULL, NULL,   "firefox" };
 static const char *calcmd[]     = { "st", "-c", "cal", "-e", "calcurse", NULL, "cal" };
 static const char *rsscmd[]     = { "st", "-c", "rss", "-e", "newsboat", NULL, "rss" };
 static const char *orgcmd[]     = { "org.sh",                                   NULL,   };
