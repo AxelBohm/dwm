@@ -108,6 +108,7 @@ static const char *passcmd[]    = { "dmenu_pass", "-p",                         
 static const char *usercmd[]    = { "dmenu_pass", "-u",                         NULL };
 static const char *emacscmd[]   = { "emacs",  NULL, NULL, NULL, NULL, NULL,    "Emacs"};
 static const char *screenshot[] = { "scrot", "-s",                              NULL };
+static const char *mailtoclip[] = { "copy_email_to_clipboard.sh",               NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -128,6 +129,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_e,      runorraise,     {.v = emacscmd } },
 	{ MODKEY|ControlMask,           XK_e,      runorraise,     {.v = emacscmd } },
 	{ MODKEY|ControlMask,           XK_s,      spawn,          {.v = screenshot } },
+	{ MODKEY,                       XK_at,      spawn,          {.v = mailtoclip } },
 	{ MODKEY,                       XK_s,      view,           {0} },
     /* sys */
     { MODKEY,                       XK_Delete, spawn,          {.v = lockcmd } },
