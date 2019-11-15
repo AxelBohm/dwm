@@ -130,7 +130,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_e,      runorraise,     {.v = emacscmd } },
 	{ MODKEY|ControlMask,           XK_e,      runorraise,     {.v = emacscmd } },
 	{ MODKEY|ControlMask,           XK_s,      spawn,          {.v = screenshot } },
-	{ MODKEY,                       XK_at,      spawn,          {.v = mailtoclip } },
+	{ MODKEY,                       XK_at,     spawn,          {.v = mailtoclip } },
 	{ MODKEY,                       XK_s,      view,           {0} },
     /* sys */
     { MODKEY,                       XK_Delete, spawn,          {.v = lockcmd } },
