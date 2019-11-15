@@ -48,6 +48,7 @@ static const Rule rules[] = {
 	/* { "Emacs",    NULL,       NULL,       1 << 4,       0,           0 }, */
     /* when assining Emacs a tag, all clients get that tag, which is annoying for orgcmd */
 	{ "Rambox",   NULL,       NULL,       1 << 7,       0,           0 },
+	{ "Signal",   NULL,       NULL,       1 << 7,       0,           0 },
 };
 
 /* layout(s) */
