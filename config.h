@@ -19,14 +19,20 @@ static const char bright_blue[]     = "#83a598";
 static const char col_fg[]          = "#ebdbb2";
 
 
+static const char nord_bg[]          = "#2e3440";
+static const char nord_green[]       = "#a3be8c";
+static const char nord_fg[]          = "#d8dee9";
+static const char nord_grey[]        = "#4c566a";
+static const char nord_blue[]        = "#81a1c1";
+
 static const char *colors[][3]      = {
-	/*               fg          bg         border   */
-	[SchemeNorm] = { col_fg,     col_bg,    col_bg },
-	[SchemeSel]  = { col_green,  col_bg,    col_grey },
+	/*               fg           bg         border   */
+	[SchemeNorm] = { nord_fg,     nord_bg,   nord_bg   },
+	[SchemeSel]  = { nord_green,  nord_bg,   nord_fg },
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "4", "7", "8", "" };
+static const char *tags[] = { "", "", "", "4", "5", "7", "8", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -34,12 +40,14 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Firefox",  NULL,       NULL,       1 << 1,       0,           0 },
+	{ "firefox",  NULL,       NULL,       1 << 1,       0,           0 },
 	{ "mutt",     NULL,       NULL,       1 << 0,       0,           0 },
 	{ "calender", NULL,       NULL,       1 << 0,       0,           0 },
 	{ "rss",      NULL,       NULL,       1 << 0,       0,           0 },
 	{ "org",      NULL,       NULL,       1 << 0,       0,           0 },
-	{ "Rambox",   NULL,       NULL,       1 << 6,       0,           0 },
+	/* { "Emacs",    NULL,       NULL,       1 << 4,       0,           0 }, */
+    /* when assining Emacs a tag, all clients get that tag, which is annoying for orgcmd */
+	{ "Rambox",   NULL,       NULL,       1 << 7,       0,           0 },
 };
 
 /* layout(s) */
@@ -59,7 +67,7 @@ static const Layout layouts[] = {
 #define ALTKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+	{ MODKEY|ControlMask,           KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
@@ -88,48 +96,60 @@ static const char *mpcprev[]    = { "mpc", "prev",                              
 static const char *mpctoggle[]  = { "mpc", "toggle",                            NULL };
 /* misc */
 static const char *lockcmd[]    = { "slock",                                    NULL };
-static const char *mailcmd[]    = { "st", "-c", "mutt", "-e", "neomutt", NULL,   "mutt" };
-static const char *browsercmd[] = { "firefox", NULL, NULL, NULL, NULL, NULL,     "Firefox" };
-static const char *calcmd[]     = { "st", "-c", "cal", "-e", "calcurse", NULL,   "cal" };
-static const char *rsscmd[]     = { "st", "-c", "rss", "-e", "newsboat", NULL,   "rss" };
-static const char *orgcmd[]     = { "st", "-c", "org", "-e", "orgmode.sh", NULL, "org" };
-static const char *chatcmd[]    = { "rambox", NULL, NULL, NULL, NULL, NULL,      "Rambox"};
+static const char *mailcmd[]    = { "st", "-c", "mutt", "-e", "mutt.sh", NULL, "mutt" };
+static const char *browsercmd[] = { "firefox", NULL, NULL, NULL, NULL, NULL,   "firefox" };
+static const char *calcmd[]     = { "st", "-c", "cal", "-e", "calcurse", NULL, "cal" };
+static const char *rsscmd[]     = { "st", "-c", "rss", "-e", "newsboat", NULL, "rss" };
+static const char *orgcmd[]     = { "org.sh",                                   NULL,   };
+static const char *chatcmd[]    = { "rambox", NULL, NULL, NULL, NULL, NULL,    "Rambox"};
 static const char *musiccmd[]   = { "st", "-e", "ncmpcpp",                      NULL };
 static const char *rangercmd[]  = { "st", "-e", "ranger",                       NULL };
 static const char *passcmd[]    = { "dmenu_pass", "-p",                         NULL };
 static const char *usercmd[]    = { "dmenu_pass", "-u",                         NULL };
+static const char *emacscmd[]   = { "emacs",  NULL, NULL, NULL, NULL, NULL,    "Emacs"};
+static const char *screenshot[] = { "scrot", "-s",                              NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_semicolon, spawn,       {.v = termcmd } },
+	{ MODKEY|ControlMask,           XK_n,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_m,      runorraise,     {.v = mailcmd } },
 	{ MODKEY,                       XK_b,      runorraise,     {.v = browsercmd } },
 	{ ALTKEY,                       XK_space,  spawn,          {.v = rangercmd } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = rangercmd } },
 	{ MODKEY,                       XK_z,      runorraise,     {.v = calcmd } },
-	{ MODKEY,                       XK_n,      runorraise,     {.v = rsscmd } },
-	{ MODKEY,                       XK_o,      runorraise,     {.v = orgcmd } },
+	{ MODKEY|ShiftMask,             XK_n,      runorraise,     {.v = rsscmd } },
+	{ MODKEY,                       XK_o,      spawn,          {.v = orgcmd } },
 	{ MODKEY,                       XK_c,      runorraise,     {.v = chatcmd } },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = musiccmd } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = passcmd } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = usercmd } },
+	{ MODKEY|ShiftMask,             XK_e,      runorraise,     {.v = emacscmd } },
+	{ MODKEY|ControlMask,           XK_e,      runorraise,     {.v = emacscmd } },
+	{ MODKEY|ControlMask,           XK_s,      spawn,          {.v = screenshot } },
 	{ MODKEY,                       XK_s,      view,           {0} },
     /* sys */
     { MODKEY,                       XK_Delete, spawn,          {.v = lockcmd } },
     { MODKEY,                       XK_x,      spawn,          {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screensetup } },
-    { ALTKEY,                       XK_d,      spawn,          {.v = screendualext } },
-    { ALTKEY,                       XK_i,      spawn,          {.v = screenint } },
+    { MODKEY|ShiftMask,             XK_d,      spawn,          {.v = screendualext } },
+    { MODKEY|ShiftMask,             XK_i,      spawn,          {.v = screenint } },
+    /* qwerty */
+	/* { MODKEY,                       XK_j,      focusstack,     {.i = +1 } }, */
+	/* { MODKEY,                       XK_k,      focusstack,     {.i = -1 } }, */
+	/* { MODKEY,                       XK_l,      setmfact,       {.f = +0.05} }, */
+	/* { MODKEY,                       XK_i,      incnmaster,     {.i = +1 } }, */
+	/* { MODKEY|ShiftMask,             XK_i,      incnmaster,     {.i = -1 } }, */
+    /* colemak */
+	{ MODKEY,                       XK_n,      focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_e,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_i,      setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_u,      incnmaster,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_u,      incnmaster,     {.i = -1 } },
     /* base */
-	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_i,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
@@ -149,9 +169,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_7,                      4)
-	TAGKEYS(                        XK_8,                      5)
-	TAGKEYS(                        XK_9,                      6)
+	TAGKEYS(                        XK_5,                      4)
+	TAGKEYS(                        XK_7,                      5)
+	TAGKEYS(                        XK_8,                      6)
+	TAGKEYS(                        XK_9,                      7)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
     /* audio */
 	{ 0,                XF86XK_AudioLowerVolume,      spawn,   {.v = voldown } },
