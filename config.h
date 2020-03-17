@@ -32,7 +32,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "4", "5", "7", "8", "" };
+static const char *tags[] = { "", "", "", "4", "5", "6", "7", "8", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -47,8 +47,8 @@ static const Rule rules[] = {
 	{ "org",      NULL,       NULL,       1 << 0,       0,           0 },
 	/* { "Emacs",    NULL,       NULL,       1 << 4,       0,           0 }, */
     /* when assining Emacs a tag, all clients get that tag, which is annoying for orgcmd */
-	{ "Rambox",   NULL,       NULL,       1 << 7,       0,           0 },
-	{ "Signal",   NULL,       NULL,       1 << 7,       0,           0 },
+	{ "Rambox",   NULL,       NULL,       1 << 8,       0,           0 },
+	{ "Signal",   NULL,       NULL,       1 << 8,       0,           0 },
 };
 
 /* layout(s) */
@@ -109,6 +109,8 @@ static const char *passcmd[]    = { "dmenu_pass", "-p",                         
 static const char *usercmd[]    = { "dmenu_pass", "-u",                         NULL };
 static const char *emacscmd[]   = { "emacs",  NULL, NULL, NULL, NULL, NULL,    "Emacs"};
 static const char *screenshot[] = { "scrot", "-s",                              NULL };
+static const char *kbdcolemak[] = { "set_colemak.sh",                           NULL };
+static const char *clipmenu[]   = { "clipmenu",                                 NULL };
 static const char *mailtoclip[] = { "copy_email_to_clipboard.sh",               NULL };
 
 static Key keys[] = {
@@ -131,6 +133,8 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_e,      runorraise,     {.v = emacscmd } },
 	{ MODKEY|ControlMask,           XK_s,      spawn,          {.v = screenshot } },
 	{ MODKEY,                       XK_at,     spawn,          {.v = mailtoclip } },
+	{ MODKEY,                       XK_F12,    spawn,          {.v = kbdcolemak } },
+	{ MODKEY,                       XK_y,      spawn,          {.v = clipmenu } },
 	{ MODKEY,                       XK_s,      view,           {0} },
     /* sys */
     { MODKEY,                       XK_Delete, spawn,          {.v = lockcmd } },
@@ -173,9 +177,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_7,                      5)
-	TAGKEYS(                        XK_8,                      6)
-	TAGKEYS(                        XK_9,                      7)
+	TAGKEYS(                        XK_6,                      5)
+	TAGKEYS(                        XK_7,                      6)
+	TAGKEYS(                        XK_8,                      7)
+	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
     /* audio */
 	{ 0,                XF86XK_AudioLowerVolume,      spawn,   {.v = voldown } },
