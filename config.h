@@ -129,7 +129,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = musiccmd } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = passcmd } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = usercmd } },
-	{ MODKEY|ShiftMask,             XK_e,      runorraise,     {.v = emacscmd } },
 	{ MODKEY|ControlMask,           XK_e,      runorraise,     {.v = emacscmd } },
 	{ MODKEY|ControlMask,           XK_s,      spawn,          {.v = screenshot } },
 	{ MODKEY,                       XK_at,     spawn,          {.v = mailtoclip } },
@@ -141,6 +140,7 @@ static Key keys[] = {
     { MODKEY,                       XK_x,      spawn,          {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screensetup } },
     { MODKEY|ShiftMask,             XK_d,      spawn,          {.v = screendualext } },
+	{ MODKEY|ShiftMask,             XK_e,      spawn,          {.v = screenext } },
     { MODKEY|ShiftMask,             XK_i,      spawn,          {.v = screenint } },
     /* qwerty */
 	/* { MODKEY,                       XK_j,      focusstack,     {.i = +1 } }, */
