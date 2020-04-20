@@ -41,16 +41,16 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "firefox",  NULL,       NULL,       1 << 1,       0,           0 },
-	{ "mutt",     NULL,       NULL,       1 << 0,       0,           0 },
-	{ "calender", NULL,       NULL,       1 << 0,       0,           0 },
-	{ "rss",      NULL,       NULL,       1 << 0,       0,           0 },
-	{ "article",  NULL,       NULL,       0,            1,           0 },
+	/* class      instance    title       tags mask     isfloating  isterminal noswallow  monitor */
+	{ "firefox",  NULL,       NULL,       1 << 1,       0,          0,         0,          0 },
+	{ "mutt",     NULL,       NULL,       1 << 0,       0,          0,         0,          0 },
+	{ "calender", NULL,       NULL,       1 << 0,       0,          0,         0,          0 },
+	{ "rss",      NULL,       NULL,       1 << 0,       0,          0,         0,          0 },
+	{ "article",  NULL,       NULL,       0,            0,          1,         0,          0 },
 	/* { "Emacs",    NULL,       NULL,       1 << 4,       0,           0 }, */
     /* when assining Emacs a tag, all clients get that tag, which is annoying for orgcmd */
-	{ "Rambox",   NULL,       NULL,       1 << 8,       0,           0 },
-	{ "Signal",   NULL,       NULL,       1 << 8,       0,           0 },
+	{ "Rambox",   NULL,       NULL,       1 << 8,       0,          0,         0,          0 },
+	{ "Signal",   NULL,       NULL,       1 << 8,       0,          0,         0,          0 },
 };
 
 /* layout(s) */
