@@ -4,12 +4,14 @@
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int gappx     = 4;       /* gap pixel between windows */
+static const unsigned int gappx     = 6;       /* gap pixel between windows */
+static const int vertpad            = 8;       /* vertical padding of bar */
+static const int sidepad            = 8;       /* horizontal padding of bar */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "xos4 Terminus:pixelsize=12" };
-static const char dmenufont[]       = "xos4 Terminus:pixelsize=12";
+static const char *fonts[]          = { "Terminus:pixelsize=12" };
+static const char dmenufont[]       = "Terminus:pixelsize=12";
 
 /* colors */
 static const char col_bg[]          = "#282828";
@@ -44,7 +46,7 @@ static const Rule rules[] = {
 	{ "mutt",     NULL,       NULL,       1 << 0,       0,           0 },
 	{ "calender", NULL,       NULL,       1 << 0,       0,           0 },
 	{ "rss",      NULL,       NULL,       1 << 0,       0,           0 },
-	{ "org",      NULL,       NULL,       1 << 0,       0,           0 },
+	{ "article",  NULL,       NULL,       0,            1,           0 },
 	/* { "Emacs",    NULL,       NULL,       1 << 4,       0,           0 }, */
     /* when assining Emacs a tag, all clients get that tag, which is annoying for orgcmd */
 	{ "Rambox",   NULL,       NULL,       1 << 8,       0,           0 },
@@ -112,6 +114,7 @@ static const char *screenshot[] = { "scrot", "-s",                              
 static const char *kbdcolemak[] = { "set_colemak.sh",                           NULL };
 static const char *clipmenu[]   = { "clipmenu",                                 NULL };
 static const char *mailtoclip[] = { "copy_email_to_clipboard.sh",               NULL };
+static const char *articlecmd[] = { "st", "-c", "article", "-e", "fuzzy_article.sh", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -135,6 +138,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_F12,    spawn,          {.v = kbdcolemak } },
 	{ MODKEY,                       XK_y,      spawn,          {.v = clipmenu } },
 	{ MODKEY,                       XK_s,      view,           {0} },
+	{ MODKEY,                       XK_a,      spawn,          {.v = articlecmd} },
     /* sys */
     { MODKEY,                       XK_Delete, spawn,          {.v = lockcmd } },
     { MODKEY,                       XK_x,      spawn,          {.v = lockcmd } },
@@ -161,7 +165,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_a,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
