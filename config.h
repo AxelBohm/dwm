@@ -87,8 +87,8 @@ static const char *screenext[]      = { "set-external.sh",                      
 static const char *screendualext[]  = { "set-dual-external.sh",                 NULL };
 static const char *screenint[]      = { "set-internal.sh",                      NULL };
 /* sound */
-static const char *volup[]      = { "amixer", "sset", "Master", "5%+",          NULL };
-static const char *voldown[]    = { "amixer", "sset", "Master", "5%-",          NULL };
+static const char *volup[]      = { "volume-plus",                              NULL };
+static const char *voldown[]    = { "volume-minus",                             NULL };
 static const char *volmute[]    = { "amixer", "sset", "Master", "toggle",       NULL };
 /* screen brightness */
 static const char *bklu[]       = { "xbacklight", "-inc", "5",                  NULL };
