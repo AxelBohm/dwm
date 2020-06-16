@@ -10,15 +10,15 @@ static const int sidepad            = 8;       /* horizontal padding of bar */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Terminus:pixelsize=12" };
-static const char dmenufont[]       = "Terminus:pixelsize=12";
+static const char *fonts[]          = { "xos4 Terminus:pixelsize=12" };
+static const char dmenufont[]       = "xos4 Terminus:pixelsize=12";
 
 /* colors */
-static const char col_bg[]          = "#282828";
-static const char col_green[]       = "#98971a";
-static const char col_grey[]        = "#928374";
+static const char col_bg[]          = "#222222";
+static const char col_green[]       = "#719611";
+static const char col_grey[]        = "#686858";
 static const char bright_blue[]     = "#83a598";
-static const char col_fg[]          = "#ebdbb2";
+static const char col_fg[]          = "#c2c2b0";
 
 
 static const char nord_bg[]          = "#2e3440";
@@ -29,8 +29,8 @@ static const char nord_blue[]        = "#81a1c1";
 
 static const char *colors[][3]      = {
 	/*               fg           bg         border   */
-	[SchemeNorm] = { nord_fg,     nord_bg,   nord_bg   },
-	[SchemeSel]  = { nord_green,  nord_bg,   nord_fg },
+	[SchemeNorm] = { col_fg,     col_bg,   col_bg   },
+	[SchemeSel]  = { col_green,  col_bg,   col_green },
 };
 
 /* tagging */
