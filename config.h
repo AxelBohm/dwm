@@ -4,7 +4,9 @@
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int gappx     = 4;       /* gap pixel between windows */
+static const unsigned int gappx     = 6;       /* gap pixel between windows */
+static const int vertpad            = 8;       /* vertical padding of bar */
+static const int sidepad            = 8;       /* horizontal padding of bar */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -12,11 +14,11 @@ static const char *fonts[]          = { "Terminus:pixelsize=12" };
 static const char dmenufont[]       = "Terminus:pixelsize=12";
 
 /* colors */
-static const char col_bg[]          = "#282828";
-static const char col_green[]       = "#98971a";
-static const char col_grey[]        = "#928374";
+static const char col_bg[]          = "#222222";
+static const char col_green[]       = "#719611";
+static const char col_grey[]        = "#686858";
 static const char bright_blue[]     = "#83a598";
-static const char col_fg[]          = "#ebdbb2";
+static const char col_fg[]          = "#c2c2b0";
 
 
 static const char nord_bg[]          = "#2e3440";
@@ -27,28 +29,28 @@ static const char nord_blue[]        = "#81a1c1";
 
 static const char *colors[][3]      = {
 	/*               fg           bg         border   */
-	[SchemeNorm] = { nord_fg,     nord_bg,   nord_bg   },
-	[SchemeSel]  = { nord_green,  nord_bg,   nord_fg },
+	[SchemeNorm] = { col_fg,     col_bg,   col_bg   },
+	[SchemeSel]  = { col_green,  col_bg,   col_green },
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "4", "5", "7", "8", "" };
+static const char *tags[] = { "", "", "", "4", "5", "6", "7", "8", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "firefox",  NULL,       NULL,       1 << 1,       0,           0 },
-	{ "mutt",     NULL,       NULL,       1 << 0,       0,           0 },
-	{ "calender", NULL,       NULL,       1 << 0,       0,           0 },
-	{ "rss",      NULL,       NULL,       1 << 0,       0,           0 },
-	{ "org",      NULL,       NULL,       1 << 0,       0,           0 },
+	/* class      instance    title       tags mask     isfloating  isterminal noswallow  monitor */
+	{ "firefox",  NULL,       NULL,       1 << 1,       0,          0,         0,          0 },
+	{ "mutt",     NULL,       NULL,       1 << 0,       0,          0,         0,          0 },
+	{ "calender", NULL,       NULL,       1 << 0,       0,          0,         0,          0 },
+	{ "rss",      NULL,       NULL,       1 << 0,       0,          0,         0,          0 },
+	{ "article",  NULL,       NULL,       0,            0,          1,         0,          0 },
 	/* { "Emacs",    NULL,       NULL,       1 << 4,       0,           0 }, */
     /* when assining Emacs a tag, all clients get that tag, which is annoying for orgcmd */
-	{ "Rambox",   NULL,       NULL,       1 << 7,       0,           0 },
-	{ "Signal",   NULL,       NULL,       1 << 7,       0,           0 },
+	{ "Rambox",   NULL,       NULL,       1 << 8,       0,          0,         0,          0 },
+	{ "Signal",   NULL,       NULL,       1 << 8,       0,          0,         0,          0 },
 };
 
 /* layout(s) */
@@ -85,8 +87,8 @@ static const char *screenext[]      = { "set-external.sh",                      
 static const char *screendualext[]  = { "set-dual-external.sh",                 NULL };
 static const char *screenint[]      = { "set-internal.sh",                      NULL };
 /* sound */
-static const char *volup[]      = { "amixer", "sset", "Master", "5%+",          NULL };
-static const char *voldown[]    = { "amixer", "sset", "Master", "5%-",          NULL };
+static const char *volup[]      = { "volume-plus",                              NULL };
+static const char *voldown[]    = { "volume-minus",                             NULL };
 static const char *volmute[]    = { "amixer", "sset", "Master", "toggle",       NULL };
 /* screen brightness */
 static const char *bklu[]       = { "xbacklight", "-inc", "5",                  NULL };
@@ -104,12 +106,15 @@ static const char *rsscmd[]     = { "st", "-c", "rss", "-e", "newsboat", NULL, "
 static const char *orgcmd[]     = { "org.sh",                                   NULL,   };
 static const char *chatcmd[]    = { "rambox", NULL, NULL, NULL, NULL, NULL,    "Rambox"};
 static const char *musiccmd[]   = { "st", "-e", "ncmpcpp",                      NULL };
-static const char *rangercmd[]  = { "st", "-e", "ranger",                       NULL };
+static const char *filebrows[]  = { "st", "-e", "lf",                           NULL };
 static const char *passcmd[]    = { "dmenu_pass", "-p",                         NULL };
 static const char *usercmd[]    = { "dmenu_pass", "-u",                         NULL };
 static const char *emacscmd[]   = { "emacs",  NULL, NULL, NULL, NULL, NULL,    "Emacs"};
 static const char *screenshot[] = { "scrot", "-s",                              NULL };
+static const char *kbdcolemak[] = { "set_colemak.sh",                           NULL };
+static const char *clipmenu[]   = { "clipmenu",                                 NULL };
 static const char *mailtoclip[] = { "copy_email_to_clipboard.sh",               NULL };
+static const char *articlecmd[] = { "st", "-c", "article", "-e", "fuzzy_article.sh", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -117,9 +122,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ControlMask,           XK_n,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_m,      runorraise,     {.v = mailcmd } },
-	{ MODKEY,                       XK_b,      runorraise,     {.v = browsercmd } },
-	{ ALTKEY,                       XK_space,  spawn,          {.v = rangercmd } },
-	{ MODKEY,                       XK_r,      spawn,          {.v = rangercmd } },
+	{ MODKEY,                       XK_w,      runorraise,     {.v = browsercmd } },
+	{ ALTKEY,                       XK_space,  spawn,          {.v = filebrows } },
+	{ MODKEY,                       XK_r,      spawn,          {.v = filebrows } },
 	{ MODKEY,                       XK_z,      runorraise,     {.v = calcmd } },
 	{ MODKEY|ShiftMask,             XK_n,      runorraise,     {.v = rsscmd } },
 	{ MODKEY,                       XK_o,      spawn,          {.v = orgcmd } },
@@ -127,16 +132,19 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = musiccmd } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = passcmd } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = usercmd } },
-	{ MODKEY|ShiftMask,             XK_e,      runorraise,     {.v = emacscmd } },
 	{ MODKEY|ControlMask,           XK_e,      runorraise,     {.v = emacscmd } },
 	{ MODKEY|ControlMask,           XK_s,      spawn,          {.v = screenshot } },
 	{ MODKEY,                       XK_at,     spawn,          {.v = mailtoclip } },
+	{ MODKEY,                       XK_F12,    spawn,          {.v = kbdcolemak } },
+	{ MODKEY,                       XK_y,      spawn,          {.v = clipmenu } },
 	{ MODKEY,                       XK_s,      view,           {0} },
+	{ MODKEY,                       XK_a,      spawn,          {.v = articlecmd} },
     /* sys */
     { MODKEY,                       XK_Delete, spawn,          {.v = lockcmd } },
     { MODKEY,                       XK_x,      spawn,          {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screensetup } },
     { MODKEY|ShiftMask,             XK_d,      spawn,          {.v = screendualext } },
+	{ MODKEY|ShiftMask,             XK_e,      spawn,          {.v = screenext } },
     { MODKEY|ShiftMask,             XK_i,      spawn,          {.v = screenint } },
     /* qwerty */
 	/* { MODKEY,                       XK_j,      focusstack,     {.i = +1 } }, */
@@ -157,7 +165,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_a,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
@@ -173,9 +181,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_7,                      5)
-	TAGKEYS(                        XK_8,                      6)
-	TAGKEYS(                        XK_9,                      7)
+	TAGKEYS(                        XK_6,                      5)
+	TAGKEYS(                        XK_7,                      6)
+	TAGKEYS(                        XK_8,                      7)
+	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
     /* audio */
 	{ 0,                XF86XK_AudioLowerVolume,      spawn,   {.v = voldown } },
