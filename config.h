@@ -2,6 +2,9 @@
 
 #include <X11/XF86keysym.h>
 
+/* Constants */
+#define TERM "st"
+
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 6;       /* gap pixel between windows */
@@ -103,16 +106,13 @@ static const char *mailcmd[]    = { "st", "-c", "mutt", "-e", "mutt.sh", NULL, "
 static const char *browsercmd[] = { "firefox", NULL, NULL, NULL, NULL, NULL,   "firefox" };
 static const char *calcmd[]     = { "st", "-c", "cal", "-e", "calcurse", NULL, "cal" };
 static const char *rsscmd[]     = { "st", "-c", "rss", "-e", "newsboat", NULL, "rss" };
-static const char *orgcmd[]     = { "org.sh",                                   NULL,   };
 static const char *chatcmd[]    = { "rambox", NULL, NULL, NULL, NULL, NULL,    "Rambox"};
 static const char *musiccmd[]   = { "st", "-e", "ncmpcpp",                      NULL };
-static const char *filebrows[]  = { "st", "-e", "lf",                           NULL };
 static const char *passcmd[]    = { "dmenu_pass", "-p",                         NULL };
 static const char *usercmd[]    = { "dmenu_pass", "-u",                         NULL };
 static const char *emacscmd[]   = { "emacs",  NULL, NULL, NULL, NULL, NULL,    "Emacs"};
 static const char *screenshot[] = { "scrot", "-s",                              NULL };
 static const char *kbdcolemak[] = { "set_colemak.sh",                           NULL };
-static const char *clipmenu[]   = { "clipmenu",                                 NULL };
 static const char *mailtoclip[] = { "copy_email_to_clipboard.sh",               NULL };
 static const char *articlecmd[] = { "st", "-c", "article", "-e", "fuzzy_article.sh", NULL };
 
@@ -124,10 +124,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,      runorraise,     {.v = mailcmd } },
 	{ MODKEY,                       XK_w,      runorraise,     {.v = browsercmd } },
 	{ ALTKEY,                       XK_space,  spawn,          {.v = filebrows } },
-	{ MODKEY,                       XK_b,      spawn,          {.v = filebrows } },
+	{ MODKEY,                       XK_b,      spawn,          SHCMD(TERM " -e $(zsh -c lf)") },
 	{ MODKEY,                       XK_z,      runorraise,     {.v = calcmd } },
 	{ MODKEY|ShiftMask,             XK_n,      runorraise,     {.v = rsscmd } },
-	{ MODKEY,                       XK_o,      spawn,          {.v = orgcmd } },
+	{ MODKEY,                       XK_o,      spawn,          SHCMD("org.sh") },
 	{ MODKEY,                       XK_c,      runorraise,     {.v = chatcmd } },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = musiccmd } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = passcmd } },
@@ -136,7 +136,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_s,      spawn,          {.v = screenshot } },
 	{ MODKEY,                       XK_at,     spawn,          {.v = mailtoclip } },
 	{ MODKEY,                       XK_F12,    spawn,          {.v = kbdcolemak } },
-	{ MODKEY,                       XK_y,      spawn,          {.v = clipmenu } },
+	{ MODKEY,                       XK_y,      spawn,          SHCMD("clipmenu") },
 	{ MODKEY,                       XK_s,      view,           {0} },
 	{ MODKEY,                       XK_a,      spawn,          {.v = articlecmd} },
     /* sys */
