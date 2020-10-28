@@ -96,10 +96,6 @@ static const char *volmute[]    = { "amixer", "sset", "Master", "toggle",       
 /* screen brightness */
 static const char *bklu[]       = { "xbacklight", "-inc", "5",                  NULL };
 static const char *bkld[]       = { "xbacklight", "-dec", "5",                  NULL };
-/* music */
-static const char *mpcnext[]    = { "mpc", "next",                              NULL };
-static const char *mpcprev[]    = { "mpc", "prev",                              NULL };
-static const char *mpctoggle[]  = { "mpc", "toggle",                            NULL };
 /* misc */
 static const char *lockcmd[]    = { "slock",                                    NULL };
 static const char *mailcmd[]    = { "st", "-c", "mutt", "-e", "mutt.sh", NULL, "mutt" };
@@ -123,8 +119,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_n,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_m,      runorraise,     {.v = mailcmd } },
 	{ MODKEY,                       XK_w,      runorraise,     {.v = browsercmd } },
-	{ ALTKEY,                       XK_space,  spawn,          {.v = filebrows } },
-	{ MODKEY,                       XK_b,      spawn,          SHCMD(TERM " -e $(zsh -c lf)") },
+	{ MODKEY,                       XK_b,      spawn,          SHCMD(TERM " -e $(zsh & lf)") },
 	{ MODKEY,                       XK_z,      runorraise,     {.v = calcmd } },
 	{ MODKEY|ShiftMask,             XK_n,      runorraise,     {.v = rsscmd } },
 	{ MODKEY,                       XK_o,      spawn,          SHCMD("org.sh") },
@@ -196,9 +191,9 @@ static Key keys[] = {
     /* screen setup */
 	{ 0,                XF86XK_Display,               spawn,   {.v = screenext } },
     /* music */
-	{ 0,                XF86XK_AudioPlay,             spawn,   {.v = mpctoggle } },
-	{ 0,                XF86XK_AudioNext,             spawn,   {.v = mpcnext } },
-	{ 0,                XF86XK_AudioPrev,             spawn,   {.v = mpcprev } },
+	{ 0,                XF86XK_AudioPlay,             spawn,   SHCMD("mpc toggle") },
+	{ 0,                XF86XK_AudioNext,             spawn,   SHCMD("mpc next") },
+	{ 0,                XF86XK_AudioPrev,             spawn,   SHCMD("mpc prev") },
 };
 
 /* button definitions */
