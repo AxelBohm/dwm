@@ -103,11 +103,7 @@ static const char *browsercmd[] = { "firefox", NULL, NULL, NULL, NULL, NULL,   "
 static const char *calcmd[]     = { "st", "-c", "cal", "-e", "calcurse", NULL, "cal" };
 static const char *rsscmd[]     = { "st", "-c", "rss", "-e", "newsboat", NULL, "rss" };
 static const char *chatcmd[]    = { "rambox", NULL, NULL, NULL, NULL, NULL,    "Rambox"};
-static const char *musiccmd[]   = { "st", "-e", "ncmpcpp",                      NULL };
-static const char *passcmd[]    = { "dmenu_pass", "-p",                         NULL };
-static const char *usercmd[]    = { "dmenu_pass", "-u",                         NULL };
 static const char *emacscmd[]   = { "emacs",  NULL, NULL, NULL, NULL, NULL,    "Emacs"};
-static const char *screenshot[] = { "scrot", "-s",                              NULL };
 static const char *kbdcolemak[] = { "set_colemak.sh",                           NULL };
 static const char *mailtoclip[] = { "copy_email_to_clipboard.sh",               NULL };
 static const char *articlecmd[] = { "st", "-c", "article", "-e", "fuzzy_article.sh", NULL };
@@ -119,21 +115,22 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_n,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_m,      runorraise,     {.v = mailcmd } },
 	{ MODKEY,                       XK_w,      runorraise,     {.v = browsercmd } },
-	{ MODKEY,                       XK_b,      spawn,          SHCMD(TERM " -e $(zsh & lf)") },
+	{ MODKEY,                       XK_b,      spawn,          SHCMD("st -e $(zsh & lf)") },
+	{ MODKEY,                       XK_r,      spawn,          SHCMD("st -e ranger") },
 	{ MODKEY,                       XK_z,      runorraise,     {.v = calcmd } },
 	{ MODKEY|ShiftMask,             XK_n,      runorraise,     {.v = rsscmd } },
 	{ MODKEY,                       XK_o,      spawn,          SHCMD("org.sh") },
 	{ MODKEY,                       XK_c,      runorraise,     {.v = chatcmd } },
-	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = musiccmd } },
-	{ MODKEY,                       XK_p,      spawn,          {.v = passcmd } },
-	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = usercmd } },
+	{ MODKEY|ShiftMask,             XK_m,      spawn,          SHCMD("st -e ncmpcpp") },
+	{ MODKEY,                       XK_p,      spawn,          SHCMD("dmenu_pass -p") },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("dmenu_pass -u") },
 	{ MODKEY|ControlMask,           XK_e,      runorraise,     {.v = emacscmd } },
-	{ MODKEY|ControlMask,           XK_s,      spawn,          {.v = screenshot } },
+	{ MODKEY|ControlMask,           XK_s,      spawn,          SHCMD("scrot -s") },
 	{ MODKEY,                       XK_at,     spawn,          {.v = mailtoclip } },
 	{ MODKEY,                       XK_F12,    spawn,          {.v = kbdcolemak } },
 	{ MODKEY,                       XK_y,      spawn,          SHCMD("clipmenu") },
 	{ MODKEY,                       XK_s,      view,           {0} },
-	{ MODKEY,                       XK_a,      spawn,          {.v = articlecmd} },
+	{ MODKEY,                       XK_a,      spawn,          SHCMD("emacsclient -c --eval '(ivy-bibtex)'") },
     /* sys */
     { MODKEY,                       XK_Delete, spawn,          {.v = lockcmd } },
     { MODKEY,                       XK_x,      spawn,          {.v = lockcmd } },
