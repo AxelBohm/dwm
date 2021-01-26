@@ -6,10 +6,10 @@
 #define TERM "st"
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int gappx     = 6;       /* gap pixel between windows */
-static const int vertpad            = 8;       /* vertical padding of bar */
-static const int sidepad            = 8;       /* horizontal padding of bar */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int gappx     = 0;       /* gap pixel between windows */
+static const int vertpad            = 0;       /* vertical padding of bar */
+static const int sidepad            = 0;       /* horizontal padding of bar */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
